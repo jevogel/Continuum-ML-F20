@@ -23,8 +23,6 @@ function gn(x::AbstractArray, w::AbstractVector, b::Number, f_a::Function)
     return f_a.(x' * w .+ b)
 end
 
-
-# TODO: complete the training functions below
 function grad_loss(
         f_a::Function,
         df_a::Function,
@@ -33,8 +31,7 @@ function grad_loss(
         w::AbstractVector,
         b::Number,
         normalize::Bool=true
-    )  
-
+    )
     dw = zeros(length(w))
     db = 0.0
     loss = 0.0
@@ -44,16 +41,16 @@ function grad_loss(
         dw = dw .- 2.0 * common_term .* x[:, j]
         db = db .- 2.0 * common_term
         loss += error^2
-     end
+    end
     
-     if normalize
+    if normalize
         dw /= length(y)
         db /= length(y)
         loss /= length(y)
     end
 
     return dw, db, loss
- end
+end
 
 function learn2classify_asgd(
         f_a::Function,
@@ -68,7 +65,6 @@ function learn2classify_asgd(
         normalize::Bool=true,
         seed::Integer=1
     )
-
     n, N = size(x)
     
     if seed == false
