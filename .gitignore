@@ -25,5 +25,5 @@ docs/site/
 
 **/.vscode/*
 **/.ipynb_checkpoints/*
-**/classified/*
+**/*classified/*
 **/plots/*
